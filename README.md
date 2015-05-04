@@ -1,1 +1,10 @@
 # exemplar
+
+Exemplar is a toolkit for rapidly prototyping front-end projects.
+
+## Getting Started
+
+1. Clone this repo
+2. Run `npm install`
+3. Run `node server`
+4. Run `gulp dev`
