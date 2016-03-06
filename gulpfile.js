@@ -1,15 +1,48 @@
-var gulp         = require('gulp'),
-    jshint       = require('gulp-jshint'),
-    sass         = require('gulp-sass'),
-    sourcemaps   = require('gulp-sourcemaps'),
-    autoprefixer = require('gulp-autoprefixer'),
-    livereload   = require('gulp-livereload'),
-    htmlreplace  = require('gulp-html-replace'),
-    uglify       = require('gulp-uglifyjs'),
-    beep         = require('beepbeep'),
-    chalk        = require('chalk');
+var gulp         = require('gulp');
+var jshint       = require('gulp-jshint');
+var sass         = require('gulp-sass');
+var sourcemaps   = require('gulp-sourcemaps');
+var autoprefixer = require('gulp-autoprefixer');
+var livereload   = require('gulp-livereload');
+var htmlreplace  = require('gulp-html-replace');
+var uglify       = require('gulp-uglifyjs');
+var beep         = require('beepbeep');
+var chalk        = require('chalk');
+var babel        = require('gulp-babel');
+var sourcemaps   = require('gulp-sourcemaps');
+var eslint       = require('gulp-eslint');
+var del          = require('del');
+
+gulp.task('babel', ['clean', 'es6-lint'], function() {
+
+    console.log(chalk.magenta.bold('[babel]') + ' Transpiling ES6');
+
+    return gulp.src('server/**/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(babel())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('app'));
+});
+
+gulp.task('clean', function(cb) {
+
+    console.log(chalk.magenta.bold('[clean]') + ' Cleaning app folder');
+
+    del(['app']).then(function() { cb(); });
+});
+
+gulp.task('es6-lint', function() {
+
+    console.log(chalk.magenta.bold('[es6-lint]') + ' Linting ES6');
+
+    return gulp.src('server/**/*.js')
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failOnError());
+});
 
 gulp.task('copy', function(){
+
     console.log(chalk.magenta.bold('[html-replace]') + ' Replacing some HTML');
 
     return gulp.src([
@@ -97,7 +130,6 @@ gulp.task('uglify', function() {
 
     return gulp.src([
             'src/components/jquery/dist/jquery.js',
-            'src/js/plugins.js',
             'src/js/main.js'
         ])
         .pipe(uglify('scripts.min.js'))
@@ -113,6 +145,7 @@ gulp.task('watch', function () {
     gulp.watch(['src/scss/**/*.scss'], ['sass:dev']);
     gulp.watch(['src/**/*.js', '!src/components/**/*.js', '!src/js/vendor/**/*.js', '!node_modules/**/*.js'], ['lint']);
     gulp.watch(['src/**/*.html'], ['html-replace']);
+    gulp.watch(['server/**/*.js'], ['babel']);
 
 });
 
@@ -120,7 +153,7 @@ gulp.task('watch', function () {
 gulp.task('icons', ['iconify-file-cleanup']);
 
 // Compile Sass and watch for file changes
-gulp.task('dev', ['lint', 'sass:dev', 'html-replace', 'watch'], function () {
+gulp.task('dev', ['lint', 'sass:dev', 'html-replace', 'babel', 'watch'], function () {
     return console.log(chalk.magenta.bold('\n[dev]') + chalk.bold.green(' Ready for you to start doing things\n'));
 });
 
