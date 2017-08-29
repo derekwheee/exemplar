@@ -47,7 +47,7 @@ gulp.task('svg', () => {
 });
 
 gulp.task('watch', ['uglify', 'sass', 'svg'], () => {
-    gulp.watch('www/scripts/**/*.js', ['uglify']);
+    gulp.watch(['www/scripts/**/*.js', '!www/scripts/combined.js'], ['uglify']);
     gulp.watch('www/scss/**/*.scss', ['sass']);
     gulp.watch('www/icons/*.svg', ['svg']);
 });
