@@ -1,0 +1,58 @@
+﻿.header-photo-edit,
+.header-photo-add,
+.header-photo-remove {
+    display: none;
+    position: absolute;
+    top: 13em;
+    padding: 1em;
+    font-size: 0.8em;
+    color: white !important;
+    text-decoration: none !important;
+    z-index: 10;
+}
+
+.header-photo-edit,
+.header-photo-add {
+    right: 12em;
+    background: #693;
+}
+
+.header-photo-add {
+    right: 3em;
+    background: #693;
+    z-index: 100;
+}
+
+.header-photo-remove {
+    right: 3em;
+    background: #999;
+}
+
+.header-photo-edit:hover,
+.header-photo-add:hover,
+.header-photo-remove:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.header-photo-edit:hover,
+.header-photo-add:hover {
+    background: #471;
+}
+
+.header-photo-remove:hover {
+    background: #666;
+}
+
+body.building .header-photo-edit,
+body.building .header-photo-remove {
+    display: block;
+}
+
+@media (max-width: 991px) {
+    .header-photo-edit,
+    .header-photo-add,
+    .header-photo-remove {
+        display: none;
+    }
+}

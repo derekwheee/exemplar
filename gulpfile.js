@@ -19,7 +19,10 @@ gulp.task('sass', () => {
 gulp.task('uglify', (cb) => {
     pump([
         gulp.src([
-            'www/scripts/common.js'
+            'www/scripts/vendor/lousy-load.js',
+            'www/scripts/vendor/jquery-ui.js',
+            'www/scripts/vendor/swiper.js',
+            'www/scripts/common.js',
         ]),
         uglify(),
         concat('combined.js'),
