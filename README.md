@@ -1,5 +1,7 @@
 # exemplar
 
+This is a fork of https://github.com/frxnz/exemplar
+
 Exemplar is a toolkit for rapidly prototyping front-end projects.
 
 ## Getting Started
