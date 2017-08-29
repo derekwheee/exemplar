@@ -5,7 +5,8 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node dev"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,6 @@
     "gulp": "^3.9.1",
     "gulp-cheerio": "^0.6.2",
     "gulp-concat": "^2.6.1",
-    "gulp-express": "^0.3.5",
     "gulp-foreach": "^0.1.0",
     "gulp-replace": "^0.6.1",
     "gulp-sass": "^3.1.0",
