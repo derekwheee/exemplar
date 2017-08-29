@@ -6,5 +6,5 @@ Exemplar is a toolkit for rapidly prototyping front-end projects.
 
 1. Clone this repo
 2. Run `npm install`
-3. Run `node server`
-4. Run `gulp dev`
+3. Run `gulp dev`
+4. Go to https://localhost:3000

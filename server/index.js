@@ -1,19 +1,52 @@
-import express from 'express';
+const express = require('express');
+const exphbs  = require('express-handlebars');
+const config = require('./config');
+const helpers = require('./helpers');
 
-// Constants
-const DEFAULT_PORT = 3000;
-const START_DIRECTORY = __dirname + '/../dist';
+let app;
 
-console.log(START_DIRECTORY);
+if (!config.USE_SSL) {
+    http = require('http');
+    app = express();
+    init();
+    http.createServer(app).listen(process.env.PORT || config.DEFAULT_PORT);
+} else {
+    let pem = require('pem');
+    https = require('https');
+    pem.createCertificate({ days: 1, selfSigned: true }, function (err, keys) {
+        app = express();
+        init();
+        https.createServer({ key: keys.serviceKey, cert: keys.certificate }, app).listen(process.env.PORT || config.DEFAULT_PORT);
+    });
+}
 
-let app = express();
+function init() {
 
-app.set('port', (process.env.PORT || DEFAULT_PORT));
+    app.set('views', config.VIEWS_PATH);
 
-app.use(express.static(START_DIRECTORY));
+    app.engine('.hbs', exphbs({
+        layoutsDir : `${config.VIEWS_PATH}/layouts/`,
+        partialsDir : `${config.VIEWS_PATH}/partials/`,
+        defaultLayout : 'main',
+        extname : '.hbs',
+        helpers : helpers,
+    }));
 
-app.listen(app.get('port'), function () {
+    app.set('view engine', '.hbs');
 
-  console.log('Node app is running at localhost:' + app.get('port'));
+    app.use(express.static(config.STATIC_PATH))
 
-});
+    app.get('/', function (req, res) {
+        res.render('index');
+    });
+
+    app.get('/:path', function (req, res) {
+        try {
+            res.render(req.params.path);
+        } catch (err) {
+            console.log(404, req.params.path);
+        }
+    });
+
+    console.log('Listening on port', process.env.PORT || config.DEFAULT_PORT);
+}
