@@ -2,11 +2,8 @@
   "name": "exemplar",
   "version": "0.1.0",
   "description": "",
-  "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node dev"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,20 +15,6 @@
     "url": "https://github.com/frxnz/exemplar/issues"
   },
   "homepage": "https://github.com/frxnz/exemplar",
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-cheerio": "^0.6.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-foreach": "^0.1.0",
-    "gulp-replace": "^0.6.1",
-    "gulp-sass": "^3.1.0",
-    "gulp-svgmin": "^1.2.4",
-    "gulp-uglify": "^3.0.0",
-    "pem": "^1.9.7",
-    "pump": "^1.0.2"
-  },
-  "dependencies": {
-    "express": "^4.15.4",
-    "express-handlebars": "^3.0.0"
-  }
+  "devDependencies": {},
+  "dependencies": {}
 }

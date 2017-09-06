@@ -1,0 +1,34 @@
+/// Generate a media query for a specified size
+/// ```
+///     "small"       : "(max-width: 767px})",
+///     "medium"      : "(max-width: 991px)",
+///     "large"       : "(max-width: 1199px)",
+///     "huge"        : "(max-width: 15999px)",
+///     "medium-only" : "(min-width: 768px) and (max-width: 991px)"
+/// ```
+/// @param {String} $point - A key from the `$breakpoints` map or a media query
+/// @group Responsive
+/// @content
+@mixin bp($point) {
+    $query: map-get($breakpoints, $point);
+  
+    @if not $query {
+        $query: $point;
+    }
+  
+    @media #{$query} {
+        @content;
+    }
+}
+
+@mixin bpmin($point) {
+    $query: map-get($min-breakpoints, $point);
+
+    @if not $query {
+        $query: $point;
+    }
+
+    @media #{$query} {
+        @content;
+    }
+}

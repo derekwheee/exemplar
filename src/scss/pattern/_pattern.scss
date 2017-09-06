@@ -1,0 +1,67 @@
+.pl {
+    
+        &-pattern {
+            margin-bottom: 2em;
+    
+            &_heading {
+                margin-bottom: 2em;
+                padding-bottom: 0.25em;
+                border-bottom: 1px solid;
+                color: #666;
+            }
+        }
+    
+        &-swatches {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 0 -1em;
+    
+            &_swatch {
+                flex-grow: 1;
+                position: relative;
+                margin: 0 2em 4em;
+                min-width: 8em;
+                height: 4em;
+    
+                &:before {
+                    content: attr(data-color);
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    font-size: 0.875em;
+                    text-align: center;
+                }
+            }
+        }
+    
+        &-icons {
+            display: flex;
+            flex-wrap: wrap;
+    
+            &_icon {
+                position: relative;
+                width: 6em;
+                margin: 1em;
+                padding-bottom: 1em;
+    
+                &:before {
+                    content: attr(data-icon);
+                    position: absolute;
+                    top: calc(100% - 0.5em);
+                    left: 0;
+                    right: 0;
+                    font-size: 0.75em;
+                    text-align: center;
+                }
+    
+                .icon {
+                    display: block;
+                    width: 2em;
+                    height: 2em;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
