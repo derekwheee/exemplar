@@ -1,24 +1,9 @@
 {
-  "name": "exemplar",
-  "version": "0.1.0",
-  "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/frxnz/exemplar.git"
-  },
-  "author": "Derek Wheelden",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/frxnz/exemplar/issues"
-  },
-  "homepage": "https://github.com/frxnz/exemplar",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
+    "lousy-load": "^1.0.1",
     "webpack": "^3.5.6"
   },
   "dependencies": {}
